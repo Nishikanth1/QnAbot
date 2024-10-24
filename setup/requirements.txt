@@ -1,3 +1,5 @@
 flask
 pypdf
+jq
 langchain_community
+langchain
