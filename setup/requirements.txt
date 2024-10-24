@@ -1,1 +1,3 @@
 flask
+pypdf
+langchain_community
