@@ -45,4 +45,4 @@ if __name__ == "__main__":
     resp = bot.add_files_to_store(file_path_list)
     resp = bot.ask_question(query)
     
-    print(f"response for {query} is {resp}")
+    print(f"response for query: <<{query}>> is response: <<{resp}>>")
