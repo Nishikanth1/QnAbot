@@ -3,6 +3,7 @@ import sys
 import logging
 
 from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import JSONLoader
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler(sys.stdout))
@@ -20,6 +21,15 @@ class FileReader:
             lazy_pdf_loader = loader.lazy_load()
             logging.info(f"returning pdf lazy loader for {self.filepath}")
             return lazy_pdf_loader
+        if self.file_extension == ".json":
+            loader = JSONLoader(
+                file_path=self.filepath,
+                jq_schema=".",
+                text_content=False,
+                json_lines=True
+            )
+            json_lazy_loader = loader.lazy_load()
+            return json_lazy_loader
         else:
             raise ValueError(f"Unsupported file type: {self.file_extension}")
         
