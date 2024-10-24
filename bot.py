@@ -7,7 +7,7 @@ from config import MODEL_NAME
 from embeddings.create_embeddings import Embeddings
 
 
-template = """Answer the question based only on the following context:
+template = """Answer the question based only on the following context: Reply with 'I dont know' if context is not relevant.
 
 context: {context}
 
