@@ -6,6 +6,7 @@ from langchain_ollama import ChatOllama
 from config import MODEL_NAME
 from embeddings.create_embeddings import Embeddings
 
+
 template = """Answer the question based only on the following context:
 
 context: {context}
@@ -14,12 +15,8 @@ Question: {question}
 """
 prompt = ChatPromptTemplate.from_template(template)
 
-
-
 def format_docs(docs):
     return "\n\n".join([d.page_content for d in docs])
-
-
 
 class Bot:
     def __init__(self) -> None:
@@ -46,6 +43,6 @@ if __name__ == "__main__":
     file_path_list = ["data/documents/deloitte-soc2-short.pdf"]
     bot = Bot()
     resp = bot.add_files_to_store(file_path_list)
-    resp = bot.ask_question(file_path_list)
+    resp = bot.ask_question(query)
     
     print(f"response for {query} is {resp}")
