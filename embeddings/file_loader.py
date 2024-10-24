@@ -10,20 +10,20 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 logging.basicConfig(encoding='utf-8', format='%(asctime)s %(levelname)s  %(message)s', level=logging.INFO)
 
 class FileReader:
-    def __init__(self, filepath):
-        self.filepath = filepath
-        self.file_extension = os.path.splitext(filepath)[1].lower()
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.file_extension = os.path.splitext(file_path)[1].lower()
 
     def read(self):
         if self.file_extension == '.pdf':
-            loader = PyPDFLoader(self.filepath)
+            loader = PyPDFLoader(self.file_path)
             # lazy loader to handle large files
             lazy_pdf_loader = loader.lazy_load()
-            logging.info(f"returning pdf lazy loader for {self.filepath}")
+            logging.info(f"returning pdf lazy loader for {self.file_path}")
             return lazy_pdf_loader
         if self.file_extension == ".json":
             loader = JSONLoader(
-                file_path=self.filepath,
+                file_path=self.file_path,
                 jq_schema=".",
                 text_content=False,
                 json_lines=True
