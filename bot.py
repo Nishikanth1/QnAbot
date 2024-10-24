@@ -42,7 +42,7 @@ if __name__ == "__main__":
     query = "who needs soc2 report"
     file_path_list = ["data/documents/deloitte-soc2-short.pdf"]
     bot = Bot()
-    resp = bot.add_files_to_store(file_path_list)
+    bot.add_files_to_store(file_path_list)
     resp = bot.ask_question(query)
     
     print(f"response for query: <<{query}>> is response: <<{resp}>>")
