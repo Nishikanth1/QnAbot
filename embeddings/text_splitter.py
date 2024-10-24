@@ -7,7 +7,7 @@ import json
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_text_splitters import RecursiveJsonSplitter
 
-from file_loader import FileReader
+from .file_loader import FileReader
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.StreamHandler(sys.stdout))

@@ -10,7 +10,7 @@ from langchain_community.docstore.in_memory import InMemoryDocstore
 from langchain_community.vectorstores import FAISS
 
 from config import MODEL_NAME
-from text_splitter import TextSplitter
+from .text_splitter import TextSplitter
 
 
 logger = logging.getLogger(__name__)
