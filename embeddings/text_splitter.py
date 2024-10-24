@@ -14,10 +14,10 @@ logger.addHandler(logging.StreamHandler(sys.stdout))
 logging.basicConfig(encoding='utf-8', format='%(asctime)s %(levelname)s  %(message)s', level=logging.INFO)
 
 class TextSplitter:
-    def __init__(self, filepath):
-        self.filepath = filepath
-        self.file_extension = os.path.splitext(filepath)[1].lower()
-        self.loader = FileReader(filepath)
+    def __init__(self, file_path):
+        self.file_path = file_path
+        self.file_extension = os.path.splitext(file_path)[1].lower()
+        self.loader = FileReader(file_path)
 
     def split(self):
         if self.file_extension == '.pdf':

@@ -3,3 +3,5 @@ pypdf
 jq
 langchain_community
 langchain
+langchain-ollama
+faiss-cpu
