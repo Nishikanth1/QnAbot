@@ -1,5 +1,5 @@
-DEFAULT_QUESTIONS_PATH = "./data/questions/"
-DEFAULT_DOCUMENTS_PATH = "./data/documents/"
+DEFAULT_QUESTIONS_PATH = "/tmp/"
+DEFAULT_DOCUMENTS_PATH = "/tmp/"
 
 MAX_FILE_CONTENT_SIZE = 8 * 1000 * 1000 # 8 mb # TODO use frontend logic to handle large files
 
