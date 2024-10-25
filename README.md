@@ -6,7 +6,7 @@ q and a bot for answering question from a given set of documents
 
 1. download and setup ollama
     * ollama pull ollama:tinyllama
-    * ollama seve
+    * ollama serve
 2. cd into **docker** folder in repo
     * docker compose up -d
 3. check python flask app is running
