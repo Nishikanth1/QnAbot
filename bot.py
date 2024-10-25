@@ -29,13 +29,13 @@ class Bot:
             self.embedder.create_embeddings(file_path) 
 
     def ask_question(self, query):
-        chain = (
-                {"context": self.embedder.vector_store.as_retriever() | format_docs, "question": RunnablePassthrough()}
-                | prompt
-                | self.model
-                | StrOutputParser()
-            )
-        self.chain = chain
+        if not self.chain:
+            self.chain = (
+                    {"context": self.embedder.vector_store.as_retriever() | format_docs, "question": RunnablePassthrough()}
+                    | prompt
+                    | self.model
+                    | StrOutputParser()
+                )
         return self.chain.invoke(query)
 
 if __name__ == "__main__":
