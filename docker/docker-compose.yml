@@ -1,0 +1,8 @@
+services:
+  app:
+    image: qnabot:latest
+    ports:
+      - 5000:5000
+    network_mode: host
+    # use host network since ollama is serving in host
+    # TODO use docker based tinyllama when available
