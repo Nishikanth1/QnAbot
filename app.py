@@ -59,14 +59,19 @@ def answer_question():
                 
                 questions = []
                 with open(questions_file_path) as fp:
-                    questions = json.load(fp)
-
+                    try:
+                        questions = json.load(fp)
+                    except ValueError as vex:
+                        logger.error(f"invalid json file for questions")
+                        response = make_response("invalid questions file, please ensure its a list of question")
+                        response.status_code = 401
+                        
                 for query in questions:
                     try:
-                        logger.info(f"asking query f{query}")
+                        logger.info(f"asking query {query}")
                         llm_answer = bot.ask_question(query)
                         query_responses[query] = llm_answer
-                        logger.info(f"got query response f{query}")
+                        logger.info(f"got query response {query}")
                     except Exception as q_ex:
                         logger.info(f"query {query} failed with {q_ex}")
                     

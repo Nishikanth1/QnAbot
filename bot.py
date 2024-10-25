@@ -6,12 +6,12 @@ from langchain_ollama import ChatOllama
 from config import MODEL_NAME
 from embeddings.create_embeddings import Embeddings
 
+template = """ You are a helpful assistant. Answer the question as detailed as possible from the provided context make sure to provide all the details. If the answer is not in the provided context, 
+just say, 'answer is not available in the context', don't provide the wrong answer"
 
-template = """Answer the question based only on the following context: Reply with 'I dont know' if context is not relevant.
+context: <<{context}>>
 
-context: {context}
-
-Question: {question}
+Question: <<{question}>>
 """
 prompt = ChatPromptTemplate.from_template(template)
 
