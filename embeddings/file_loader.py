@@ -21,12 +21,13 @@ class FileReader:
             lazy_pdf_loader = loader.lazy_load()
             logging.info(f"returning pdf lazy loader for {self.file_path}")
             return lazy_pdf_loader
-        if self.file_extension == ".json":
+        if self.file_extension == ".json" or self.file_extension== ".jsonl":
+            is_json_lines = self.file_extension == ".jsonl"
             loader = JSONLoader(
                 file_path=self.file_path,
                 jq_schema=".",
                 text_content=False,
-                json_lines=True
+                json_lines=is_json_lines
             )
             json_lazy_loader = loader.lazy_load()
             return json_lazy_loader
