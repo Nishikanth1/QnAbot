@@ -30,20 +30,27 @@ class TextSplitter:
             for chunk in self.loader.read():
                 split = splitter.split_documents([chunk])
                 yield split            
-        elif self.file_extension == ".json":
+        elif self.file_extension == ".json" or self.file_extension == ".jsonl":
             splitter = RecursiveJsonSplitter(max_chunk_size=300)
             for chunk in self.loader.read():
                 # TODO find better way to split json
-                parsed_chunk = json.loads(chunk.page_content)
-                split = splitter.split_text(parsed_chunk)
+                is_json_lines = self.file_extension == ".jsonl"
+                if not is_json_lines:
+                    parsed_chunk = json.loads(chunk.page_content.replace("\'", "\""))
+                else:
+                    parsed_chunk = [chunk.page_content]
+                split = splitter.split_text(parsed_chunk, convert_lists=True)
                 yield split
                 
         else: 
             raise ValueError(f"Unknown extension {self.file_extension} for text splitting")        
 
 if __name__ == "__main__":
-    splitter = TextSplitter("./data/documents/open_api.json")
+    splitter = TextSplitter("logs_lines.jsonl")
     print([l for l in splitter.split()])
+    
+    splitter = TextSplitter("logs_json.json")
+    print([l for l in splitter.split()])    
     
     splitter = TextSplitter("./data/documents/Deloitte-SOC2.pdf")
     print([l for l in splitter.split()])
